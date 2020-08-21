@@ -9,14 +9,14 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>peapio&#39;s life</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1597972330328">
+<link rel="shortcut icon" href="/favicon.ico?v=1597973204642">
 <link rel="stylesheet" href="/media/css/muse.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
   href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
   rel="stylesheet" type="text/css">
 
-<link href="/media/hljs/styles/default.css"
+<link href="/media/hljs/styles/agate.css"
   rel="stylesheet">
 
 <link rel="stylesheet" href="/styles/main.css">
@@ -223,8 +223,8 @@
       <div class="social-item">
         
           
-            <a href="">
-              <i class="fa fa-globe" title=""></i>
+            <a href="github.com/peapio">
+              <i class="fa fa-github-alt" title="github"></i>
             </a>
           
         
@@ -232,7 +232,7 @@
           
             <a class="social-img" href="#">
               <img src="" />
-              <i class="fa fa-globe" title="" ></i>
+              <i class="fa fa-qq" title="QQ" ></i>
             </a>
           
         
@@ -306,10 +306,11 @@
       <div class="post-body">
         
         
-          
-            <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+          <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
+          
+            <img src="/post-images/hello-gridea.png" />
           
         
         
@@ -373,48 +374,6 @@
   </div>
   
   
-  
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <div class="aplayer" id="aplayer"></div>
-  <script>
-  let musics = JSON.parse('[{"author":"","cover":"","lrc":"","musicLink":"","musicName":""}]');
-  let mediaMusic = [];
-  for (let i = 0; i < musics.length; i++) {
-    let item = musics[i];
-    mediaMusic.push({
-      name: item.musicName,
-      artist: item.author,
-      url: item.musicLink,
-      lrc: item.lrc,
-      cover: item.cover
-    });
-  }
-
-  const ap = new APlayer({
-      container: document.getElementById('aplayer'),
-      fixed: true,
-      lrcType: 3,
-      listFolded: false,
-      listMaxHeight: 90,
-      audio: mediaMusic
-  });
-  window.addEventListener('load', function() {
-    let postBody = document.querySelector('#post_body');
-    let hs = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-    postBody && hs.forEach(h => {
-      let helems = postBody.querySelectorAll(h);
-      if (helems.length > 0) {
-        helems.forEach(elem => {
-          elem.id = encodeURI(elem.id);
-        })
-      }
-    })
-  })
-  </script>
-
-
   
 </div>
 <script>
@@ -951,6 +910,13 @@ int main(){
 
 </script>
 <script src="/media/js/motion.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script>
+  var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 200
+  });
+</script>
 
 
 <script src="/media/js/mouse/peace.js"></script>
