@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>我的neovim的配置🐟 | peapio&#39;s life</title>
+<title># 几种基本排序算法(待补充) | peapio&#39;s life</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1603510122857">
 <link rel="stylesheet" href="/media/css/muse.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -48,8 +48,8 @@
 </script>
 
 
-  <meta name="description" content="我的neovim的配置🐟" />
-  <meta name="keywords" content="vim,linux,工具" />
+  <meta name="description" content="# 几种基本排序算法(待补充)" />
+  <meta name="keywords" content="算法,c++" />
 </head>
 
 <body>
@@ -347,8 +347,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://peapio.github.io/post/wo-de-neovim-de-pei-zhi/">
-      我的neovim的配置🐟
+    <a class="post-title-link" href="https://peapio.github.io/post/ji-chong-ji-ben-pai-xu-suan-fa-dai-bu-chong/">
+      # 几种基本排序算法(待补充)
     </a>
   </h1>
   <div class="post-meta">
@@ -356,7 +356,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-09-06 11:47:27">2020-09-06-Sun</span>
+      <span class="publish-time" data-t="2020-10-24 11:25:01">2020-10-24-Sat</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -365,20 +365,14 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://peapio.github.io/tag/KnYlX8-Ub/">
-        <span>vim</span>
+      <a href="https://peapio.github.io/tag/v1CGdPgHQ/">
+        <span>算法</span>
       </a>、
       
       
       
-      <a href="https://peapio.github.io/tag/zUomk8knLP/">
-        <span>linux</span>
-      </a>、
-      
-      
-      
-      <a href="https://peapio.github.io/tag/rGG5APZS0D/">
-        <span>工具</span>
+      <a href="https://peapio.github.io/tag/9X82v90Kok/">
+        <span>c++</span>
       </a>
       
       
@@ -387,100 +381,143 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>6<span class="language" data-lan="minute">分钟</span></span>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1180<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>492<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p><img src="https://peapio.github.io/post-images/1599368573964.png" alt="" loading="lazy"><br>
-断断续续使用vim已经一年多的时间,期间也折腾过不少次配置文件,现在使用的vim已经和当时完全不同了,所以想通过博客记录一下,如果以后有人能看到这篇博客,希望能对你有一点点帮助.<br>
-对我而言,使用vim写的最多的就是c++算法题了,所以这份配置主要安装的都是c++有关的插件(其实也没有多少),不过就算改成其他的语言编辑器也很方便.<br>
-这份配置参考了许多别人的vim配置,包括 spacevim thinkvim, vimplus,我只挑选了它们其中一些我认为非常使用的插件和配置,最终构成了这份我用起来很顺手的neovim,<br>
-我认为对vim本身的配置基本大同小异,最主要的还是插件,使用的插件会大大提升编辑效率,所以这篇文章我会主要推荐一些插件.<br>
-## 插件管理器 vim-plug<br>
-简洁使用(据说) ,不过确实安装插件非常方便,只要使用格式</p>
-<pre><code class="language-vimscript">call plug#begin('~/.config/nvim/vim/plugged')
-Plug '你想要安装的插件'    
-call plug#end()
-</code></pre>
-<p>并且可以懒加载,</p>
-<pre><code>Plug 'voldikss/vim-floaterm',        { 'on': 'FloatermNew' }         &quot;在指定命令下才加载文件
-Plug 'vim-scripts/fcitx.vim',      {'for': ['markdown','cpp','vim','sh']}    &quot;在指定文件格式下加载文件
-</code></pre>
-<pre><code>&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
-&quot; 插件安装
-&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
-call plug#begin('~/.config/nvim/vim/plugged')
-&quot;美化插件
-Plug 'hardcoreplayers/spaceline.vim'
-Plug 'hardcoreplayers/vim-buffet'
-Plug 'luochen1990/rainbow'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'hardcoreplayers/oceanic-material'
-Plug 'mhartington/oceanic-next'
-Plug 'hardcoreplayers/dashboard-nvim'
-Plug 'morhetz/gruvbox'
-Plug 'octol/vim-cpp-enhanced-highlight',{'for':'cpp'} &quot; c++高亮
-Plug 'Yggdroot/indentLine'                            &quot; 缩进可视化
-Plug 'ryanoasis/vim-devicons'                         &quot; 给各种插件增加文件图标
-Plug 'chrisbra/changesPlugin'                         &quot; 文件修改提示
-Plug 'itchyny/vim-cursorword'                         &quot; 光标在单词上会有一个下划线
-Plug 'kristijanhusak/defx-icons'
-&quot;功能插件 :使用更顺畅
-Plug 'gcmt/wildfire.vim'                                                                  &quot; 智能选中enter
-Plug 'suan/vim-instant-markdown',  {'for': 'markdown'}                                    &quot; markdown预览
-Plug 'dhruvasagar/vim-table-mode', {'on':'TableModeToggle'}                               &quot; 更规范的表格
-Plug 'kshenoy/vim-signature'                                                              &quot; 书签跳转，ma
-Plug 'junegunn/vim-easy-align'                                                            &quot; 快速对齐 ,a2&lt;space&gt;第二个空格对齐，,a-&lt;space&gt;倒数，,a*&lt;space&gt;所有，,a&lt;Enter&gt;*&lt;space&gt;右对齐
-Plug 'easymotion/vim-easymotion',  {'on':['&lt;Plug&gt;(easymotion-w)','&lt;Plug&gt;(easymotion-b)']} &quot; 快速移动
-Plug 'terryma/vim-smooth-scroll'                                                          &quot; 平滑翻页
-Plug 'rhysd/clever-f.vim'                                                                 &quot; 智能F，搜索高亮，f跳转
-Plug 'rhysd/accelerated-jk'                                                               &quot; 加速jk键
-Plug 'tpope/vim-repeat'                                                                   &quot; 增强．功能，可以重复surround
-Plug 'junegunn/vim-slash'                                                                 &quot; 搜索后移动取消高亮
-Plug 'itchyny/screensaver.vim',    {'on': 'ScreenSaver'}                                  &quot; 屏幕保护程序
-Plug 'jiangmiao/auto-pairs'                                                               &quot; 自动补全括号
-Plug 'tpope/vim-commentary'                                                               &quot; 注释插件
-Plug 'tpope/vim-surround'                                                                 &quot; yss&quot;加＂号，csw'&quot; ＇修改成＂　ds'删除＇
-Plug 'vim-scripts/fcitx.vim',      {'for': ['markdown','cpp','vim','sh']}                 &quot; 切换中文不影响普通模式输入
-&quot; 功能插件:
-Plug 'dense-analysis/ale'                                                                                    &quot; 错误提示
-Plug 'neoclide/coc.nvim',            {'branch': 'release'}                                                   &quot; 自动补全
-Plug 'honza/vim-snippets'                                                                                    &quot; 代码片
-Plug 'yianwillis/vimcdoc'                                                                                    &quot; vim中文手册
-Plug 'mbbill/undotree',              {'on':'UndotreeToggle'}                                                 &quot; 撤销树（代码回滚）
-Plug 'junegunn/fzf',                 {'on':['Files', 'History', 'Colors', 'Rg', 'Marks'] }                   &quot; fzf模糊查找文件
-Plug 'junegunn/fzf.vim',             {'on':['Files', 'History', 'Colors', 'Rg', 'Marks']}
-Plug 'sbdchd/neoformat',             {'on':'Neoformat'}                                                      &quot; 格式化文件(我还没用过)leader&gt;nf
-Plug 'voldikss/vim-floaterm',        { 'on': 'FloatermNew' }                                                 &quot; 浮动终端
-Plug 'liuchengxu/vista.vim',         {'on':'Vista'}                                                          &quot; 查看函数什么的
-Plug 'kristijanhusak/defx-git',      {'on':'Defx'}                                                           &quot; 查看文件树
-Plug 'Shougo/defx.nvim',             { 'do': ':UpdateRemotePlugins'}
-Plug 'tyru/open-browser.vim',        {'on':['&lt;Plug&gt;(openbrowser-smart-search)', '&lt;Plug&gt;(openbrowser-open)']} &quot; gx google搜索, gu打开连接
-Plug 'mg979/vim-visual-multi',       {'branch': 'master'}                                                    &quot; &lt;c-n&gt; 多鼠标操作
-Plug 'voldikss/vim-translator',      { 'on':'&lt;Plug&gt;Translate' }                                              &quot; 划词翻译 leader&gt;tl
-Plug 'junegunn/goyo.vim',            {'on':'Goyo'}                                                           &quot; 专注模式gy开启
-Plug 'tweekmonster/startuptime.vim', {'on': 'StartupTime'}                                                   &quot; 查看启动所需时间
-&quot; 可选
-&quot;Plug 'sheerun/vim-polyglot',{'for':['c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
-&quot;Plug 'vim-scripts/vim-auto-save'
-&quot;Plug 'kien/rainbow_parentheses.vim'
-&quot;Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } &quot; 文件搜索
-&quot;Plug 'wakatime/vim-wakatime'                      &quot; 统计代码时间
-&quot;Plug 'SirVer/ultisnips'
-&quot;Plug 'rhysd/github-complete.vim'
-&quot;Plug 'simnalamburt/vim-mundo'                     &quot;  撤销树可视化
+              <pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+#include &lt;map&gt;
+#include &lt;vector&gt;
+using namespace std;
+const int maxn = 100;
 
+void Selection_Sort(int *a,int n){
+    for(int i=0;i&lt;n;i++){ //每次找出第i位置的最小值
+        for(int j=i+1;j&lt;n;j++){
+            if(a[j]&lt;a[i]){
+                swap(a[i],a[j]);
+            }
+        }
+    }
+}
 
-call plug#end()
+void Bubble_Sort(int *a,int n){
+    for(int i=0;i&lt;n-1;i++){
+        for(int j=0;j&lt;n-1-i;j++){
+            if(a[j]&gt;a[j+1]){
+                swap(a[j],a[j+1]);
+            }
+        }
+    }
+}
+
+void Insertion_Sort(int *a,int n){
+    int tmp=0;
+    int j;
+    for(int i=1;i&lt;n;i++){
+        tmp = a[i];
+        for(j=i-1;j&gt;=0&amp;&amp;a[j]&gt;tmp;j--){
+                a[j+1] = a[j];
+        }
+        a[j+1] = tmp;
+    }
+}
+
+void merge(int *a,int l1,int r1,int l2,int r2){
+    int i = l1;
+    int j = l2;
+    int temp[maxn],index=0;
+    while(i&lt;=r1&amp;&amp;j&lt;=r2){
+        if(a[i]&lt;=a[j]){
+            temp[index++] = a[i++];
+        }else{
+            temp[index++] = a[j++];
+        }
+    }
+    while(i&lt;=r1) temp[index++] = a[i++];
+    while(j&lt;=r2) temp[index++] = a[j++];
+    for(int i=0;i&lt;index;i++){
+        a[l1+i] = temp[i];
+    }
+}
+
+void Merge_Sort(int *a,int left,int right){
+    if(left&lt;right){
+        int mid = (left+right)/2;
+        Merge_Sort(a, left, mid);
+        Merge_Sort(a, mid+1, right);
+        merge(a, left, mid, mid+1, right);
+    }
+}
+
+void merge_sort(int *a,int n){
+    for(int step=2;step/2&lt;=n;step*=2){
+        for(int i=0;i&lt;=n;i+=step){
+            int mid = i+step/2-1;
+            if(mid+1&lt;=n){
+                merge(a, i, mid, mid+1, min(i+step-1,n));
+                // sort(a+i,a+min(i+step,n+1));
+            }
+        }
+    }
+}
+
+int Partition(int *a,int left,int right){
+    int tmp = a[left];
+    while(left&lt;right){
+        while(a[right]&gt;tmp)right--;
+        swap(a[right],a[left]);
+        while(a[left]&lt;tmp)left++;
+        swap(a[left],a[right]);
+    }
+    return left;
+}
+
+void Quick_Sort(int *a,int left,int right){
+    if(left&lt;right){
+        int index = Partition(a, left, right);
+        Quick_Sort(a,left,index-1);
+        Quick_Sort(a,index+1,right);
+    }
+}
+
+void Shell_sort(int *a,int n){
+    int h=1;
+    while(h&lt;n/3) h = 3*h+1;
+    while(h&gt;=1){
+        for(int i=h;i&lt;n;i++){
+            for(int j=i;j&gt;=h&amp;&amp;a[j]&lt;a[j-h];j-=h){
+                swap(a[j],a[j-h]);
+            }
+        }
+        h = h/3;
+    }
+}
+
+void Print(int *a,int n){
+    for(int i=0;i&lt;n;i++){
+        if(i!=0) cout&lt;&lt;&quot; &quot;;
+        cout&lt;&lt;a[i];
+    }
+}
+
+int main(){
+    int a[10] = {72,6,57,88,60,42,83,73,48,85};
+    Print(a, 10);
+    return 0;
+}
 
 </code></pre>
+<figure data-type="image" tabindex="1"><img src="https://images2018.cnblogs.com/blog/849589/201804/849589-20180402133438219-1946132192.png" alt="" loading="lazy"></figure>
 
             </div>
             
@@ -493,7 +530,7 @@ call plug#end()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://peapio.github.io/post/wo-de-neovim-de-pei-zhi/" title="我的neovim的配置🐟">https://peapio.github.io/post/wo-de-neovim-de-pei-zhi/</a>
+      <a href="https://peapio.github.io/post/ji-chong-ji-ben-pai-xu-suan-fa-dai-bu-chong/" title="# 几种基本排序算法(待补充)">https://peapio.github.io/post/ji-chong-ji-ben-pai-xu-suan-fa-dai-bu-chong/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -502,22 +539,20 @@ call plug#end()
   </ul>
   <div class="tags">
     
-      <a href="https://peapio.github.io/tag/KnYlX8-Ub/"># vim</a>
+      <a href="https://peapio.github.io/tag/v1CGdPgHQ/"># 算法</a>
     
-      <a href="https://peapio.github.io/tag/zUomk8knLP/"># linux</a>
-    
-      <a href="https://peapio.github.io/tag/rGG5APZS0D/"># 工具</a>
+      <a href="https://peapio.github.io/tag/9X82v90Kok/"># c++</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="# 几种基本排序算法(待补充)" href="https://peapio.github.io/post/ji-chong-ji-ben-pai-xu-suan-fa-dai-bu-chong/"># 几种基本排序算法(待补充)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="# 几种基本排序算法(待补充)" href="https://peapio.github.io/post/ji-chong-ji-ben-pai-xu-suan-fa-dai-bu-chong/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="我的neovim的配置🐟" href="https://peapio.github.io/post/wo-de-neovim-de-pei-zhi/">我的neovim的配置🐟</a>
+        <a class="nav-mobile-next" title="我的neovim的配置🐟" href="https://peapio.github.io/post/wo-de-neovim-de-pei-zhi/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
