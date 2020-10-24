@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://peapio.github.io</id>
     <title>peapio&apos;s life</title>
-    <updated>2020-10-24T03:29:56.506Z</updated>
+    <updated>2020-10-24T03:40:52.787Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://peapio.github.io"/>
     <link rel="self" href="https://peapio.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://peapio.github.io/images/avatar.png</logo>
     <icon>https://peapio.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, peapio&apos;s life</rights>
+    <entry>
+        <title type="html"><![CDATA[LaTex的基本语法]]></title>
+        <id>https://peapio.github.io/post/latex-de-ji-ben-yu-fa/</id>
+        <link href="https://peapio.github.io/post/latex-de-ji-ben-yu-fa/">
+        </link>
+        <updated>2020-10-24T03:38:23.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[markdown数学符号(typora)]]></title>
+        <id>https://peapio.github.io/post/markdown-shu-xue-fu-hao-typora/</id>
+        <link href="https://peapio.github.io/post/markdown-shu-xue-fu-hao-typora/">
+        </link>
+        <updated>2020-10-24T03:31:05.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[几种基本排序算法(待补充)]]></title>
         <id>https://peapio.github.io/post/ji-chong-ji-ben-pai-xu-suan-fa-dai-bu-chong/</id>
