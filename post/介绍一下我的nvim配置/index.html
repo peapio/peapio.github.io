@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.92.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title> 介绍一下我的neovim配置 &middot; My New Hugo Site</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://peapio.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://peapio.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://peapio.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://peapio.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://peapio.github.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://peapio.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1> 介绍一下我的neovim配置</h1>
+  <time datetime=2022-02-09T21:24:05&#43;0800 class="post-date">Wed, Feb 9, 2022</time>
+  <h1 id="介绍一下我的neovim配置">介绍一下我的neovim配置</h1>
+<p><img src="/home/fin/.config/Typora/typora-user-images/image-20220212100639329.png" alt="image-20220212100639329"></p>
+<h2 id="附上pluglist">附上Pluglist</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">call plug<span style="color:#960050;background-color:#1e0010">#</span>begin(<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">~/</span>.config<span style="color:#f92672">/</span>nvim<span style="color:#f92672">/</span>vim<span style="color:#f92672">/</span>plugged<span style="color:#960050;background-color:#1e0010">&#39;</span>)
+<span style="color:#e6db74">&#34;美化插件</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>hardcoreplayers<span style="color:#f92672">/</span>spaceline.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#e6db74">&#34; Plug &#39;itchyny/lightline.vim&#39;</span>
+<span style="color:#e6db74">&#34; Plug &#39;vim-airline/vim-airline&#39;</span>
+<span style="color:#e6db74">&#34; Plug &#39;vim-airline/vim-airline-themes&#39;</span>
+
+<span style="color:#e6db74">&#34; Plug &#39;liuchengxu/eleline.vim&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>bagrat<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>buffet<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>luochen1990<span style="color:#f92672">/</span>rainbow<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>kristijanhusak<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>hybrid<span style="color:#f92672">-</span>material<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>hardcoreplayers<span style="color:#f92672">/</span>oceanic<span style="color:#f92672">-</span>material<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>mhartington<span style="color:#f92672">/</span>oceanic<span style="color:#f92672">-</span>next<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>hardcoreplayers<span style="color:#f92672">/</span>dashboard<span style="color:#f92672">-</span>nvim<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>morhetz<span style="color:#f92672">/</span>gruvbox<span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#e6db74">&#34; Plug &#39;octol/vim-cpp-enhanced-highlight&#39;,{&#39;for&#39;:&#39;cpp&#39;} &#34;</span> c<span style="color:#f92672">++</span><span style="color:#960050;background-color:#1e0010">高亮</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>Yggdroot<span style="color:#f92672">/</span>indentLine<span style="color:#960050;background-color:#1e0010">&#39;</span>                            <span style="color:#e6db74">&#34; 缩进可视化</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>ryanoasis<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>devicons<span style="color:#960050;background-color:#1e0010">&#39;</span>                         <span style="color:#e6db74">&#34; 给各种插件增加文件图标</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>chrisbra<span style="color:#f92672">/</span>changesPlugin<span style="color:#960050;background-color:#1e0010">&#39;</span>                         <span style="color:#e6db74">&#34; 文件修改提示</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>itchyny<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>cursorword<span style="color:#960050;background-color:#1e0010">&#39;</span>                         <span style="color:#e6db74">&#34; 光标在单词上会有一个下划线</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>kristijanhusak<span style="color:#f92672">/</span>defx<span style="color:#f92672">-</span>icons<span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#e6db74">&#34;功能插件 :使用更顺畅</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>chxuan<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>edit<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>gcmt<span style="color:#f92672">/</span>wildfire.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                  <span style="color:#e6db74">&#34; 智能选中enter</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>suan<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>instant<span style="color:#f92672">-</span>markdown<span style="color:#960050;background-color:#1e0010">&#39;</span>,  {<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">for</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>markdown<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                    <span style="color:#e6db74">&#34; markdown预览</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>dhruvasagar<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>table<span style="color:#f92672">-</span>mode<span style="color:#960050;background-color:#1e0010">&#39;</span>, {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span>TableModeToggle<span style="color:#960050;background-color:#1e0010">&#39;</span>}                               <span style="color:#e6db74">&#34; 更规范的表格</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>kshenoy<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>signature<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                              <span style="color:#e6db74">&#34; 书签跳转，ma</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>junegunn<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>easy<span style="color:#f92672">-</span>align<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                            <span style="color:#e6db74">&#34; 快速对齐 ,a2&lt;space&gt;第二个空格对齐，,a-&lt;space&gt;倒数，,a*&lt;space&gt;所有，,a&lt;Enter&gt;*&lt;space&gt;右对齐</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>easymotion<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>easymotion<span style="color:#960050;background-color:#1e0010">&#39;</span>,  {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>[<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&lt;</span>Plug<span style="color:#f92672">&gt;</span>(easymotion<span style="color:#f92672">-</span>w)<span style="color:#e6db74">&#39;,&#39;</span><span style="color:#f92672">&lt;</span>Plug<span style="color:#f92672">&gt;</span>(easymotion<span style="color:#f92672">-</span>b)<span style="color:#960050;background-color:#1e0010">&#39;</span>]} <span style="color:#e6db74">&#34; 快速移动</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>terryma<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>smooth<span style="color:#f92672">-</span>scroll<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                          <span style="color:#e6db74">&#34; 平滑翻页</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>rhysd<span style="color:#f92672">/</span>clever<span style="color:#f92672">-</span>f.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                 <span style="color:#e6db74">&#34; 智能F，搜索高亮，f跳转</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>rhysd<span style="color:#f92672">/</span>accelerated<span style="color:#f92672">-</span>jk<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                               <span style="color:#e6db74">&#34; 加速jk键</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>tpope<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>repeat<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                   <span style="color:#e6db74">&#34; 增强．功能，可以重复surround</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>junegunn<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>slash<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                 <span style="color:#e6db74">&#34; 搜索后移动取消高亮</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>itchyny<span style="color:#f92672">/</span>screensaver.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>,    {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>ScreenSaver<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                  <span style="color:#e6db74">&#34; 屏幕保护程序</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>jiangmiao<span style="color:#f92672">/</span><span style="color:#66d9ef">auto</span><span style="color:#f92672">-</span>pairs<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                               <span style="color:#e6db74">&#34; 自动补全括号</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>tpope<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>commentary<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                               <span style="color:#e6db74">&#34; 注释插件</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>tpope<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>surround<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                 <span style="color:#e6db74">&#34; yss&#34;</span><span style="color:#960050;background-color:#1e0010">加＂号，</span>csw<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#e6db74">&#34; ＇修改成＂　ds&#39;删除＇</span>
+<span style="color:#e6db74">&#34; Plug &#39;vim-scripts/fcitx.vim&#39;,      {&#39;for&#39;: [&#39;markdown&#39;,&#39;cpp&#39;,&#39;vim&#39;,&#39;sh&#39;]}                 &#34;</span> <span style="color:#960050;background-color:#1e0010">切换中文不影响普通模式输入</span>
+<span style="color:#e6db74">&#34; Plug &#39;vim-scripts/VimIM&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>ZSaberLv0<span style="color:#f92672">/</span>ZFVimIM<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>ZSaberLv0<span style="color:#f92672">/</span>ZFVimJob<span style="color:#960050;background-color:#1e0010">&#39;</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>ZSaberLv0<span style="color:#f92672">/</span>ZFVimGitUtil<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#e6db74">&#34; 可选, 如果你希望定期自动清理词库 push 历史</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>YourUserName<span style="color:#f92672">/</span>ZFVimIM_pinyin_base<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#e6db74">&#34; 你的词库</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>ZSaberLv0<span style="color:#f92672">/</span>ZFVimIM_openapi<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#e6db74">&#34; 可选, 百度云输入法</span>
+<span style="color:#e6db74">&#34; 功能插件:</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>dense<span style="color:#f92672">-</span>analysis<span style="color:#f92672">/</span>ale<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                                    <span style="color:#e6db74">&#34; 错误提示</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>neoclide<span style="color:#f92672">/</span>coc.nvim<span style="color:#960050;background-color:#1e0010">&#39;</span>,            {<span style="color:#960050;background-color:#1e0010">&#39;</span>branch<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>release<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                   <span style="color:#e6db74">&#34; 自动补全</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>honza<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>snippets<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                                    <span style="color:#e6db74">&#34; 代码片</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>yianwillis<span style="color:#f92672">/</span>vimcdoc<span style="color:#960050;background-color:#1e0010">&#39;</span>                                                                                    <span style="color:#e6db74">&#34; vim中文手册</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>mbbill<span style="color:#f92672">/</span>undotree<span style="color:#960050;background-color:#1e0010">&#39;</span>,              {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span>UndotreeToggle<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                 <span style="color:#e6db74">&#34; 撤销树（代码回滚）</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>junegunn<span style="color:#f92672">/</span>fzf<span style="color:#960050;background-color:#1e0010">&#39;</span>,                 {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>[<span style="color:#960050;background-color:#1e0010">&#39;</span>Files<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>History<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>Colors<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>Rg<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>Marks<span style="color:#960050;background-color:#1e0010">&#39;</span>] }                   <span style="color:#e6db74">&#34; fzf模糊查找文件</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>junegunn<span style="color:#f92672">/</span>fzf.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>,             {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>[<span style="color:#960050;background-color:#1e0010">&#39;</span>Files<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>History<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>Colors<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>Rg<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span>Marks<span style="color:#960050;background-color:#1e0010">&#39;</span>]}
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>sbdchd<span style="color:#f92672">/</span>neoformat<span style="color:#960050;background-color:#1e0010">&#39;</span>,             {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span>Neoformat<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                      <span style="color:#e6db74">&#34; 格式化文件(我还没用过)leader&gt;nf</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>voldikss<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>floaterm<span style="color:#960050;background-color:#1e0010">&#39;</span>,        { <span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>FloatermNew<span style="color:#960050;background-color:#1e0010">&#39;</span> }                                                 <span style="color:#e6db74">&#34; 浮动终端</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>liuchengxu<span style="color:#f92672">/</span>vista.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>,         {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span>Vista<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                          <span style="color:#e6db74">&#34; 查看函数什么的</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>kristijanhusak<span style="color:#f92672">/</span>defx<span style="color:#f92672">-</span>git<span style="color:#960050;background-color:#1e0010">&#39;</span>,      {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span>Defx<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                           <span style="color:#e6db74">&#34; 查看文件树</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>Shougo<span style="color:#f92672">/</span>defx.nvim<span style="color:#960050;background-color:#1e0010">&#39;</span>,             { <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">do</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>UpdateRemotePlugins<span style="color:#960050;background-color:#1e0010">&#39;</span>}
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>tyru<span style="color:#f92672">/</span>open<span style="color:#f92672">-</span>browser.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>,        {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>[<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&lt;</span>Plug<span style="color:#f92672">&gt;</span>(openbrowser<span style="color:#f92672">-</span>smart<span style="color:#f92672">-</span>search)<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&lt;</span>Plug<span style="color:#f92672">&gt;</span>(openbrowser<span style="color:#f92672">-</span>open)<span style="color:#960050;background-color:#1e0010">&#39;</span>]} <span style="color:#e6db74">&#34; gx google搜索, gu打开连接</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>mg979<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>visual<span style="color:#f92672">-</span>multi<span style="color:#960050;background-color:#1e0010">&#39;</span>,       {<span style="color:#960050;background-color:#1e0010">&#39;</span>branch<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>master<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                    <span style="color:#e6db74">&#34; &lt;c-n&gt; 多鼠标操作</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>voldikss<span style="color:#f92672">/</span>vim<span style="color:#f92672">-</span>translator<span style="color:#960050;background-color:#1e0010">&#39;</span>,      { <span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span><span style="color:#f92672">&lt;</span>Plug<span style="color:#f92672">&gt;</span>Translate<span style="color:#960050;background-color:#1e0010">&#39;</span> }                                              <span style="color:#e6db74">&#34; 划词翻译 leader&gt;tl</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>junegunn<span style="color:#f92672">/</span>goyo.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>,            {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#e6db74">&#39;:&#39;</span>Goyo<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                           <span style="color:#e6db74">&#34; 专注模式gy开启</span>
+Plug <span style="color:#960050;background-color:#1e0010">&#39;</span>tweekmonster<span style="color:#f92672">/</span>startuptime.vim<span style="color:#960050;background-color:#1e0010">&#39;</span>, {<span style="color:#960050;background-color:#1e0010">&#39;</span>on<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>StartupTime<span style="color:#960050;background-color:#1e0010">&#39;</span>}                                                   <span style="color:#e6db74">&#34; 查看启动所需时间</span>
+<span style="color:#e6db74">&#34; 可选</span>
+<span style="color:#e6db74">&#34;Plug &#39;sheerun/vim-polyglot&#39;,{&#39;for&#39;:[&#39;c&#39;, &#39;h&#39;, &#39;cpp&#39;, &#39;py&#39;, &#39;go&#39;, &#39;java&#39;, &#39;vim&#39;, &#39;json&#39;, &#39;hs&#39;]}</span>
+<span style="color:#e6db74">&#34;Plug &#39;vim-scripts/vim-auto-save&#39;</span>
+<span style="color:#e6db74">&#34;Plug &#39;kien/rainbow_parentheses.vim&#39;</span>
+<span style="color:#e6db74">&#34;Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } &#34;</span> <span style="color:#960050;background-color:#1e0010">文件搜索</span>
+<span style="color:#e6db74">&#34;Plug &#39;wakatime/vim-wakatime&#39;                      &#34;</span> <span style="color:#960050;background-color:#1e0010">统计代码时间</span>
+<span style="color:#e6db74">&#34;Plug &#39;SirVer/ultisnips&#39;</span>
+<span style="color:#e6db74">&#34;Plug &#39;rhysd/github-complete.vim&#39;</span>
+<span style="color:#e6db74">&#34;Plug &#39;simnalamburt/vim-mundo&#39;                     &#34;</span>  <span style="color:#960050;background-color:#1e0010">撤销树可视化</span>
+
+
+call plug<span style="color:#960050;background-color:#1e0010">#</span>end()
+</code></pre></div><h2 id="startuptime">StartupTime</h2>
+<blockquote>
+<p>Total Time:  120.288 &ndash; Flawless Victory</p>
+<p>Slowest 10 plugins (out of 33)~
+[runtime]	35.025<br>
+[vimrc]	28.422<br>
+coc.nvim	10.588<br>
+vim-buffet	10.202<br>
+vim-visual-multi	5.184<br>
+ZFVimJob	4.578<br>
+ZFVimIM	4.135<br>
+vim-devicons	3.060<br>
+vim-signature	2.727<br>
+ale	2.355</p>
+</blockquote>
+<p>我的nvim配置地址：https://github.com/peapio/nvim</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>
