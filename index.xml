@@ -1,51 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>My New Hugo Site</title>
-    <link>https://peapio.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 09 Feb 2022 21:24:05 +0800</lastBuildDate><atom:link href="https://peapio.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title> 介绍一下我的neovim配置</title>
-      <link>https://peapio.github.io/post/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84nvim%E9%85%8D%E7%BD%AE/</link>
-      <pubDate>Wed, 09 Feb 2022 21:24:05 +0800</pubDate>
-      
-      <guid>https://peapio.github.io/post/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84nvim%E9%85%8D%E7%BD%AE/</guid>
-      <description>介绍一下我的neovim配置 附上Pluglist call plug#begin(&amp;#39;~/.config/nvim/vim/plugged&amp;#39;) &amp;#34;美化插件 Plug &amp;#39;hardcoreplayers/spaceline.vim&amp;#39; &amp;#34; Plug &amp;#39;itchyny/lightline.vim&amp;#39; &amp;#34; Plug &amp;#39;vim-airline/vim-airline&amp;#39; &amp;#34; Plug &amp;#39;vim-airline/vim-airline-themes&amp;#39; &amp;#34; Plug &amp;#39;liuchengxu/eleline.vim&amp;#39; Plug &amp;#39;bagrat/vim-buffet&amp;#39; Plug &amp;#39;luochen1990/rainbow&amp;#39; Plug &amp;#39;kristijanhusak/vim-hybrid-material&amp;#39; Plug &amp;#39;hardcoreplayers/oceanic-material&amp;#39; Plug &amp;#39;mhartington/oceanic-next&amp;#39; Plug &amp;#39;hardcoreplayers/dashboard-nvim&amp;#39; Plug &amp;#39;morhetz/gruvbox&amp;#39; &amp;#34; Plug &amp;#39;octol/vim-cpp-enhanced-highlight&amp;#39;,{&amp;#39;for&amp;#39;:&amp;#39;cpp&amp;#39;} &amp;#34; c++高亮 Plug &amp;#39;Yggdroot/indentLine&amp;#39; &amp;#34; 缩进可视化 Plug &amp;#39;ryanoasis/vim-devicons&amp;#39; &amp;#34; 给各种插件增加文件图标 Plug &amp;#39;chrisbra/changesPlugin&amp;#39; &amp;#34; 文件修改提示 Plug &amp;#39;itchyny/vim-cursorword&amp;#39; &amp;#34; 光标在单词上会有一个下划线 Plug &amp;#39;kristijanhusak/defx-icons&amp;#39; &amp;#34;功能插件 :使用更顺畅 Plug &amp;#39;chxuan/vim-edit&amp;#39; Plug &amp;#39;gcmt/wildfire.vim&amp;#39; &amp;#34; 智能选中enter Plug &amp;#39;suan/vim-instant-markdown&amp;#39;, {&amp;#39;for&amp;#39;: &amp;#39;markdown&amp;#39;} &amp;#34; markdown预览 Plug &amp;#39;dhruvasagar/vim-table-mode&amp;#39;, {&amp;#39;on&amp;#39;:&amp;#39;TableModeToggle&amp;#39;} &amp;#34; 更规范的表格 Plug &amp;#39;kshenoy/vim-signature&amp;#39; &amp;#34; 书签跳转，ma Plug &amp;#39;junegunn/vim-easy-align&amp;#39; &amp;#34; 快速对齐 ,a2&amp;lt;space&amp;gt;第二个空格对齐，,a-&amp;lt;space&amp;gt;倒数，,a*&amp;lt;space&amp;gt;所有，,a&amp;lt;Enter&amp;gt;*&amp;lt;space&amp;gt;右对齐 Plug &amp;#39;easymotion/vim-easymotion&amp;#39;, {&amp;#39;on&amp;#39;:[&amp;#39;&amp;lt;Plug&amp;gt;(easymotion-w)&amp;#39;,&amp;#39;&amp;lt;Plug&amp;gt;(easymotion-b)&amp;#39;]} &amp;#34; 快速移动 Plug &amp;#39;terryma/vim-smooth-scroll&amp;#39; &amp;#34; 平滑翻页 Plug &amp;#39;rhysd/clever-f.</description>
-    </item>
-    
-    <item>
-      <title>Linux文件系统的备份</title>
-      <link>https://peapio.github.io/post/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/</link>
-      <pubDate>Wed, 09 Feb 2022 21:24:05 +0800</pubDate>
-      
-      <guid>https://peapio.github.io/post/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/</guid>
-      <description>Linux文件系统的备份 ​	最近还是按捺不住自己安装了Manjaro，并且搭配了i3的桌面。由于曾经使用过arch，这一次配置起来倒还是轻车熟路，本打算manjaro只做试验，不做主力系统，所以并没有分配太多磁盘空间（40GB），可是manjaro-i3相比Windows实在是太香，尤其实在我这个好几年前的配置的电脑几乎要带不动win10的情况下，索性打算直接暂用manjaro做学习的主力系统。那么这样的话，40GB的大小就显得不够用了。
-​	所以我打算先扩展一下磁盘大小，cfdisk发现磁盘好像不能向左扩展，从Windows身上割下来的20G空间无法融入到linux中，遂在网上查找后，发现了gparted好像可以实现我想要的效果，gparted提示磁盘文件有丢失的风险，最好备份谨慎使用，并且基于arch的manjaro同样是滚动更新，多少还是有不稳定的风险，于是我便找起了备份系统的方法。
-一番对比之后选择了rsync
-Rsync的基本特点如下：  可以镜像保存整个目录树和文件系统； 可以很容易做到保持原来文件的权限、时间、软硬链接等； 无须特殊权限即可安装； 优化的流程，文件传输效率高； 可以使用rsh、ssh等方式来传输文件，当然也可以通过直接的socket连接； 支持匿名传输。  最重要的是增量备份，即每次只更新变化的那部分。
-基本用法 1 -r 参数 本机使用 rsync 命令时，可以作为cp和mv命令的替代方法，将源目录同步到目标目录。
-$ rsync -r source destination 上面命令中，-r表示递归，即包含子目录。注意，-r是必须的，否则 rsync 运行不会成功。source目录表示源目录，destination表示目标目录。
-如果有多个文件或目录需要同步，可以写成下面这样。
-$ rsync -r source1 source2 destination 上面命令中，source1、source2都会被同步到destination目录。
-2 -a 参数 -a参数可以替代-r，除了可以递归同步以外，还可以同步元信息（比如修改时间、权限等）。由于 rsync 默认使用文件大小和修改时间决定文件是否需要更新，所以-a比-r更有用。下面的用法才是常见的写法。
-$ rsync -a source destination 目标目录destination如果不存在，rsync 会自动创建。执行上面的命令后，源目录source被完整地复制到了目标目录destination下面，即形成了destination/source的目录结构。
-如果只想同步源目录source里面的内容到目标目录destination，则需要在源目录后面加上斜杠。
-$ rsync -a source/ destination 上面命令执行后，source目录里面的内容，就都被复制到了destination目录里面，并不会在destination下面创建一个source子目录。
-3 -n 参数 如果不确定 rsync 执行后会产生什么结果，可以先用-n或--dry-run参数模拟执行的结果。
-$ rsync -anv source/ destination 上面命令中，-n参数模拟命令执行的结果，并不真的执行命令。-v参数则是将结果输出到终端，这样就可以看到哪些内容会被同步。</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://peapio.github.io/about/</link>
-      <pubDate>Wed, 09 Feb 2022 21:24:02 +0800</pubDate>
-      
-      <guid>https://peapio.github.io/about/</guid>
-      <description>关于 这是ytq的博客</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Fin`s Blog</title>
+        <link>http://peapio.github.io/</link>
+        <description>这是我的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 18 Apr 2022 14:05:11 &#43;0800</lastBuildDate>
+            <atom:link href="http://peapio.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>First_post</title>
+    <link>http://peapio.github.io/first_post/</link>
+    <pubDate>Mon, 18 Apr 2022 14:05:11 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://peapio.github.io/first_post/</guid>
+    <description><![CDATA[askdjfhjas]]></description>
+</item></channel>
 </rss>
