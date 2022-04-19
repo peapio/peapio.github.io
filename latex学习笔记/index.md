@@ -1,8 +1,6 @@
 # LaTex学习笔记
 
 
-
-
 # LaTeX
 
 ## 1.latex的结构
