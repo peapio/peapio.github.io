@@ -1,4 +1,4 @@
-# LaTex学习笔记
+# LaTeX学习笔记
 
 
 # LaTeX
