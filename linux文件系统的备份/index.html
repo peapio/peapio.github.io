@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Linux文件系统的备份 - Fin`s Blog</title><meta name="Description" content="这是我的博客"><meta property="og:title" content="Linux文件系统的备份" />
+<meta property="og:description" content="Linux文件系统的备份 ​ 最近还是按捺不住自己安装了Manjaro，并且搭配了i3的桌面。由于曾经使用过arch，这一次配置起来倒还是轻车熟" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" /><meta property="og:image" content="http://peapio.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-09T21:24:05+08:00" />
+<meta property="article:modified_time" content="2022-02-09T21:24:05+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://peapio.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Linux文件系统的备份"/>
+<meta name="twitter:description" content="Linux文件系统的备份 ​ 最近还是按捺不住自己安装了Manjaro，并且搭配了i3的桌面。由于曾经使用过arch，这一次配置起来倒还是轻车熟"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" /><link rel="prev" href="http://peapio.github.io/latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><link rel="next" href="http://peapio.github.io/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84nvim%E9%85%8D%E7%BD%AE/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Linux文件系统的备份",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/peapio.github.io\/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD\/"
+        },"genre": "posts","wordcount":  4366 ,
+        "url": "http:\/\/peapio.github.io\/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD\/","datePublished": "2022-02-09T21:24:05+08:00","dateModified": "2022-02-09T21:24:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Ytq"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Fin`s Blog">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Fin`s Blog">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Linux文件系统的备份</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Ytq</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-09">2022-02-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4366 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#rsync的基本特点如下">Rsync的基本特点如下：</a></li>
+    <li><a href="#基本用法">基本用法</a>
+      <ul>
+        <li><a href="#1--r-参数">1 <code>-r</code> 参数</a></li>
+        <li><a href="#2--a-参数">2 <code>-a</code> 参数</a></li>
+        <li><a href="#3--n-参数">3 <code>-n</code> 参数</a></li>
+        <li><a href="#4---delete-参数">4 <code>--delete</code> 参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#排除文件">排除文件</a>
+      <ul>
+        <li><a href="#1---exclude-参数">1 <code>--exclude</code> 参数</a></li>
+        <li><a href="#2---include-参数">2 <code>--include</code> 参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#远程同步">远程同步</a>
+      <ul>
+        <li><a href="#1-ssh-协议">1 SSH 协议</a></li>
+        <li><a href="#2-rsync-协议">2 rsync 协议</a></li>
+      </ul>
+    </li>
+    <li><a href="#源目录后面无--和有--的区别">源目录后面无 “/“ 和有 “/“ 的区别</a></li>
+    <li><a href="#七配置项">七、配置项</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="linux文件系统的备份">Linux文件系统的备份</h1>
+<p>​		最近还是按捺不住自己安装了Manjaro，并且搭配了i3的桌面。由于曾经使用过arch，这一次配置起来倒还是轻车熟路，本打算manjaro只做试验，不做主力系统，所以并没有分配太多磁盘空间（40GB），可是manjaro-i3相比Windows实在是太香，尤其实在我这个好几年前的配置的电脑几乎要带不动win10的情况下，索性打算直接暂用manjaro做学习的主力系统。那么这样的话，40GB的大小就显得不够用了。</p>
+<p>​		所以我打算先扩展一下磁盘大小，cfdisk发现磁盘好像不能向左扩展，从Windows身上割下来的20G空间无法融入到linux中，遂在网上查找后，发现了gparted好像可以实现我想要的效果，gparted提示磁盘文件有丢失的风险，最好备份谨慎使用，并且基于arch的manjaro同样是滚动更新，多少还是有不稳定的风险，于是我便找起了备份系统的方法。</p>
+<p>一番对比之后选择了rsync</p>
+<h2 id="rsync的基本特点如下">Rsync的基本特点如下：</h2>
+<ol>
+<li>可以镜像保存整个目录树和文件系统；</li>
+<li>可以很容易做到保持原来文件的权限、时间、软硬链接等；</li>
+<li>无须特殊权限即可安装；</li>
+<li>优化的流程，文件传输效率高；</li>
+<li>可以使用rsh、ssh等方式来传输文件，当然也可以通过直接的socket连接；</li>
+<li>支持匿名传输。</li>
+</ol>
+<p>最重要的是<strong>增量备份</strong>，即每次只更新变化的那部分。</p>
+<h2 id="基本用法">基本用法</h2>
+<h3 id="1--r-参数">1 <code>-r</code> 参数</h3>
+<p>本机使用 rsync 命令时，可以作为<code>cp</code>和<code>mv</code>命令的替代方法，将源目录同步到目标目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -r <span class="nb">source</span> destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令中，<code>-r</code>表示递归，即包含子目录。注意，<code>-r</code>是必须的，否则 rsync 运行不会成功。<code>source</code>目录表示源目录，<code>destination</code>表示目标目录。</p>
+<p>如果有多个文件或目录需要同步，可以写成下面这样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -r source1 source2 destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令中，<code>source1</code>、<code>source2</code>都会被同步到<code>destination</code>目录。</p>
+<h3 id="2--a-参数">2 <code>-a</code> 参数</h3>
+<p><code>-a</code>参数可以替代<code>-r</code>，除了可以递归同步以外，还可以同步元信息（比如修改时间、权限等）。由于 rsync 默认使用文件大小和修改时间决定文件是否需要更新，所以<code>-a</code>比<code>-r</code>更有用。下面的用法才是常见的写法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -a <span class="nb">source</span> destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目标目录<code>destination</code>如果不存在，rsync 会自动创建。执行上面的命令后，源目录<code>source</code>被完整地复制到了目标目录<code>destination</code>下面，即形成了<code>destination/source</code>的目录结构。</p>
+<p>如果只想同步源目录<code>source</code>里面的内容到目标目录<code>destination</code>，则需要在源目录后面加上斜杠。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -a source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令执行后，<code>source</code>目录里面的内容，就都被复制到了<code>destination</code>目录里面，并不会在<code>destination</code>下面创建一个<code>source</code>子目录。</p>
+<h3 id="3--n-参数">3 <code>-n</code> 参数</h3>
+<p>如果不确定 rsync 执行后会产生什么结果，可以先用<code>-n</code>或<code>--dry-run</code>参数模拟执行的结果。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -anv source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令中，<code>-n</code>参数模拟命令执行的结果，并不真的执行命令。<code>-v</code>参数则是将结果输出到终端，这样就可以看到哪些内容会被同步。</p>
+<h3 id="4---delete-参数">4 <code>--delete</code> 参数</h3>
+<p>默认情况下，rsync 只确保源目录的所有内容（明确排除的文件除外）都复制到目标目录。它不会使两个目录保持相同，并且不会删除文件。如果要使得目标目录成为源目录的镜像副本，则必须使用<code>--delete</code>参数，这将删除只存在于目标目录、不存在于源目录的文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --delete source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令中，<code>--delete</code>参数会使得<code>destination</code>成为<code>source</code>的一个镜像。</p>
+<h2 id="排除文件">排除文件</h2>
+<h3 id="1---exclude-参数">1 <code>--exclude</code> 参数</h3>
+<p>有时，我们希望同步时排除某些文件或目录，这时可以用<code>--exclude</code>参数指定排除模式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --exclude<span class="o">=</span><span class="s1">&#39;*.txt&#39;</span> source/ destination
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">$ rsync -av --exclude <span class="s1">&#39;*.txt&#39;</span> source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令排除了所有 TXT 文件。</p>
+<p>注意，rsync 会同步以&quot;点&quot;开头的隐藏文件，如果要排除隐藏文件，可以这样写<code>--exclude=&quot;.*&quot;</code>。</p>
+<p>如果要排除某个目录里面的所有文件，但不希望排除目录本身，可以写成下面这样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --exclude <span class="s1">&#39;dir1/*&#39;</span> source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多个排除模式，可以用多个<code>--exclude</code>参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --exclude <span class="s1">&#39;file1.txt&#39;</span> --exclude <span class="s1">&#39;dir1/*&#39;</span> source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多个排除模式也可以利用 Bash 的大扩号的扩展功能，只用一个<code>--exclude</code>参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --exclude<span class="o">={</span><span class="s1">&#39;file1.txt&#39;</span>,<span class="s1">&#39;dir1/*&#39;</span><span class="o">}</span> source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果排除模式很多，可以将它们写入一个文件，每个模式一行，然后用<code>--exclude-from</code>参数指定这个文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --exclude-from<span class="o">=</span><span class="s1">&#39;exclude-file.txt&#39;</span> source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2---include-参数">2 <code>--include</code> 参数</h3>
+<p><code>--include</code>参数用来指定必须同步的文件模式，往往与<code>--exclude</code>结合使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av --include<span class="o">=</span><span class="s2">&#34;*.txt&#34;</span> --exclude<span class="o">=</span><span class="s1">&#39;*&#39;</span> source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令指定同步时，排除所有文件，但是会包括 TXT 文件。</p>
+<h2 id="远程同步">远程同步</h2>
+<h3 id="1-ssh-协议">1 SSH 协议</h3>
+<p>rsync 除了支持本地两个目录之间的同步，也支持远程同步。它可以将本地内容，同步到远程服务器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av source/ username@remote_host:destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以将远程内容同步到本地。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av username@remote_host:source/ destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>rsync 默认使用 SSH 进行远程登录和数据传输。</p>
+<p>由于早期 rsync 不使用 SSH 协议，需要用<code>-e</code>参数指定协议，后来才改的。所以，下面<code>-e ssh</code>可以省略。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av -e ssh source/ user@remote_host:/destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是，如果 ssh 命令有附加的参数，则必须使用<code>-e</code>参数指定所要执行的 SSH 命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av -e <span class="s1">&#39;ssh -p 2234&#39;</span> source/ user@remote_host:/destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令中，<code>-e</code>参数指定 SSH 使用2234端口。</p>
+<h3 id="2-rsync-协议">2 rsync 协议</h3>
+<p>除了使用 SSH，如果另一台服务器安装并运行了 rsync 守护程序，则也可以用<code>rsync://</code>协议（默认端口873）进行传输。具体写法是服务器与目标目录之间使用双冒号分隔<code>::</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av source/ 192.168.122.32::module/destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，上面地址中的<code>module</code>并不是实际路径名，而是 rsync 守护程序指定的一个资源名，由管理员分配。</p>
+<p>如果想知道 rsync 守护程序分配的所有 module 列表，可以执行下面命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync rsync://192.168.122.32
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>rsync 协议除了使用双冒号，也可以直接用<code>rsync://</code>协议指定地址。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rsync -av source/ rsync://192.168.122.32/module/destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="源目录后面无--和有--的区别">源目录后面无 “/“ 和有 “/“ 的区别</h2>
+<p>将 /etc/yum 目录复制到 /tmp/zhang/ 目录下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">1</span> <span class="c1"># 源目录后面无 &#34;/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span> <span class="o">[</span>yun@backup ~<span class="o">]</span>$ rsync -avz /etc/yum  /tmp/zhang/
+</span></span><span class="line"><span class="cl"><span class="m">3</span> <span class="o">[</span>yun@backup ~<span class="o">]</span>$ ll /tmp/zhang/
+</span></span><span class="line"><span class="cl"><span class="m">4</span> total <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="m">5</span> drwxr-xr-x <span class="m">6</span> yun yun <span class="m">100</span> Nov <span class="m">14</span>  <span class="m">2018</span> yum
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将 /etc/yum/ 目录下的所有文件和目录，复制到 /tmp/zhang/ 目录下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">1</span> <span class="c1"># 源目录后面有 &#34;/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span> <span class="o">[</span>yun@backup ~<span class="o">]</span>$ rsync -avz /etc/yum/  /tmp/zhang/
+</span></span><span class="line"><span class="cl"><span class="m">3</span> <span class="o">[</span>yun@backup ~<span class="o">]</span>$ ll /tmp/zhang/
+</span></span><span class="line"><span class="cl"><span class="m">4</span> total <span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="m">5</span> drwxr-xr-x <span class="m">2</span> yun yun   <span class="m">6</span> Apr <span class="m">13</span>  <span class="m">2018</span> fssnap.d
+</span></span><span class="line"><span class="cl"><span class="m">6</span> drwxr-xr-x <span class="m">2</span> yun yun  <span class="m">54</span> Nov <span class="m">14</span>  <span class="m">2018</span> pluginconf.d
+</span></span><span class="line"><span class="cl"><span class="m">7</span> drwxr-xr-x <span class="m">2</span> yun yun  <span class="m">26</span> Nov <span class="m">14</span>  <span class="m">2018</span> protected.d
+</span></span><span class="line"><span class="cl"><span class="m">8</span> drwxr-xr-x <span class="m">2</span> yun yun  <span class="m">37</span> Apr <span class="m">13</span>  <span class="m">2018</span> vars
+</span></span><span class="line"><span class="cl"><span class="m">9</span> -rw-r--r-- <span class="m">1</span> yun yun <span class="m">444</span> Apr <span class="m">13</span>  <span class="m">2018</span> version-groups.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="七配置项">七、配置项</h2>
+<p><code>-a</code>、<code>--archive</code>参数表示存档模式，保存所有的元数据，比如修改时间（modification time）、权限、所有者等，并且软链接也会同步过去。</p>
+<p><code>--append</code>参数指定文件接着上次中断的地方，继续传输。</p>
+<p><code>--append-verify</code>参数跟<code>--append</code>参数类似，但会对传输完成后的文件进行一次校验。如果校验失败，将重新发送整个文件。</p>
+<p><code>-b</code>、<code>--backup</code>参数指定在删除或更新目标目录已经存在的文件时，将该文件更名后进行备份，默认行为是删除。更名规则是添加由<code>--suffix</code>参数指定的文件后缀名，默认是<code>~</code>。</p>
+<p><code>--backup-dir</code>参数指定文件备份时存放的目录，比如<code>--backup-dir=/path/to/backups</code>。</p>
+<p><code>--bwlimit</code>参数指定带宽限制，默认单位是 KB/s，比如<code>--bwlimit=100</code>。</p>
+<p><code>-c</code>、<code>--checksum</code>参数改变<code>rsync</code>的校验方式。默认情况下，rsync 只检查文件的大小和最后修改日期是否发生变化，如果发生变化，就重新传输；使用这个参数以后，则通过判断文件内容的校验和，决定是否重新传输。</p>
+<p><code>--delete</code>参数删除只存在于目标目录、不存在于源目标的文件，即保证目标目录是源目标的镜像。</p>
+<p><code>-e</code>参数指定使用 SSH 协议传输数据。</p>
+<p><code>--exclude</code>参数指定排除不进行同步的文件，比如<code>--exclude=&quot;*.iso&quot;</code>。</p>
+<p><code>--exclude-from</code>参数指定一个本地文件，里面是需要排除的文件模式，每个模式一行。</p>
+<p><code>--existing</code>、<code>--ignore-non-existing</code>参数表示不同步目标目录中不存在的文件和目录。</p>
+<p><code>-h</code>参数表示以人类可读的格式输出。</p>
+<p><code>-h</code>、<code>--help</code>参数返回帮助信息。</p>
+<p><code>-i</code>参数表示输出源目录与目标目录之间文件差异的详细情况。</p>
+<p><code>--ignore-existing</code>参数表示只要该文件在目标目录中已经存在，就跳过去，不再同步这些文件。</p>
+<p><code>--include</code>参数指定同步时要包括的文件，一般与<code>--exclude</code>结合使用。</p>
+<p><code>--link-dest</code>参数指定增量备份的基准目录。</p>
+<p><code>-m</code>参数指定不同步空目录。</p>
+<p><code>--max-size</code>参数设置传输的最大文件的大小限制，比如不超过200KB（<code>--max-size='200k'</code>）。</p>
+<p><code>--min-size</code>参数设置传输的最小文件的大小限制，比如不小于10KB（<code>--min-size=10k</code>）。</p>
+<p><code>-n</code>参数或<code>--dry-run</code>参数模拟将要执行的操作，而并不真的执行。配合<code>-v</code>参数使用，可以看到哪些内容会被同步过去。</p>
+<p><code>-P</code>参数是<code>--progress</code>和<code>--partial</code>这两个参数的结合。</p>
+<p><code>--partial</code>参数允许恢复中断的传输。不使用该参数时，<code>rsync</code>会删除传输到一半被打断的文件；使用该参数后，传输到一半的文件也会同步到目标目录，下次同步时再恢复中断的传输。一般需要与<code>--append</code>或<code>--append-verify</code>配合使用。</p>
+<p><code>--partial-dir</code>参数指定将传输到一半的文件保存到一个临时目录，比如<code>--partial-dir=.rsync-partial</code>。一般需要与<code>--append</code>或<code>--append-verify</code>配合使用。</p>
+<p><code>--progress</code>参数表示显示进展。</p>
+<p><code>-r</code>参数表示递归，即包含子目录。</p>
+<p><code>--remove-source-files</code>参数表示传输成功后，删除发送方的文件。</p>
+<p><code>--size-only</code>参数表示只同步大小有变化的文件，不考虑文件修改时间的差异。</p>
+<p><code>--suffix</code>参数指定文件名备份时，对文件名添加的后缀，默认是<code>~</code>。</p>
+<p><code>-u</code>、<code>--update</code>参数表示同步时跳过目标目录中修改时间更新的文件，即不同步这些有更新的时间戳的文件。</p>
+<p><code>-v</code>参数表示输出细节。<code>-vv</code>表示输出更详细的信息，<code>-vvv</code>表示输出最详细的信息。</p>
+<p><code>--version</code>参数返回 rsync 的版本。</p>
+<p><code>-z</code>参数指定同步时压缩数据。</p>
+<hr>
+<p>还好去年双十一购买的云服务器还有一部分磁盘空间可以使用。按照archwiki上的提示，备份整个系统只要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># rsync -aAXHv --exclude={&#34;/dev/*&#34;,&#34;/proc/*&#34;,&#34;/sys/*&#34;,&#34;/tmp/*&#34;,&#34;/run/*&#34;,&#34;/mnt/*&#34;,&#34;/media/*&#34;,&#34;/lost+found&#34;} / /path/to/backup</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过使用 <code>-aAX</code> 选项集，文件以归档模式传输，确保符号链接、设备、权限、所有权、修改时间、<a href="https://wiki.archlinux.org/title/Access_Control_Lists_%28%e7%ae%80%e4%bd%93%e4%b8%ad%e6%96%87%29" target="_blank" rel="noopener noreffer">ACLs</a>和扩展属性得以保留，前提是目标<a href="https://wiki.archlinux.org/title/File_systems" target="_blank" rel="noopener noreffer">文件系统</a>支持这一功能。选项 <code>-H</code> 保留了硬链接，但会使用更多的内存。</p>
+<p><code>--exclude</code> 选项使符合给定模式的文件被排除。在上述命令中，<code>/dev</code>、<code>proc</code>、<code>/sys</code>、<code>/tmp</code>和<code>/run</code> 等目录被包括在内，但这些目录的内容被排除在外。这是因为它们在系统启动时才会被填入内容，但这些目录本身不会被创建。 <code>/lost+found</code> 是针对文件系统的。上面的命令依赖于 <a href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html" target="_blank" rel="noopener noreffer">bash</a> 和 <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Brace-Expansion" target="_blank" rel="noopener noreffer">zsh</a> 中可用的括号扩展。当使用不同的 <a href="https://wiki.archlinux.org/title/Shell" target="_blank" rel="noopener noreffer">shell</a> 时，应该手动重复 <code>--exclude</code> 模式。加入排除选项可以避免被 <a href="https://wiki.archlinux.org/title/Shell" target="_blank" rel="noopener noreffer">shell</a> 误扩展，例如，在通过 <a href="https://wiki.archlinux.org/title/Secure_Shell_%28%e7%ae%80%e4%bd%93%e4%b8%ad%e6%96%87%29" target="_blank" rel="noopener noreffer">SSH</a> 备份时，这是必要的。以 <code>*</code> 结尾的排除路径可以确保目录本身在不存在的情况下被创建。 份，就像 <a href="https://wiki.archlinux.org/title/Cron" target="_blank" rel="noopener noreffer">cron</a> 脚本一样。}}</p>
+<hr>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://www.ruanyifeng.com/blog/2020/08/rsync.html" target="_blank" rel="noopener noreffer">https://www.ruanyifeng.com/blog/2020/08/rsync.html</a></p>
+<p><a href="https://wiki.archlinux.org/title/Rsync_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#%E5%85%A8%E7%9B%98%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD" target="_blank" rel="noopener noreffer">https://wiki.archlinux.org/title/Rsync_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E5%85%A8%E7%9B%98%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://peapio.github.io/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%87%E4%BB%BD/" data-title="Linux文件系统的备份"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/latex%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="LaTex学习笔记"><i class="fas fa-angle-left fa-fw"></i>LaTex学习笔记</a>
+            <a href="/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84nvim%E9%85%8D%E7%BD%AE/" class="next" rel="next" title=" 介绍一下我的neovim配置"> 介绍一下我的neovim配置<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.97.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ytq</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"peapio/peapio.github.io"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

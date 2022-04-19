@@ -1,0 +1,38 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>算法 - 标签 - Fin`s Blog</title>
+        <link>http://peapio.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+        <description>算法 - 标签 - Fin`s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>aqiiii@yeah.net (Ytq)</managingEditor>
+            <webMaster>aqiiii@yeah.net (Ytq)</webMaster><lastBuildDate>Tue, 19 Apr 2022 13:20:07 &#43;0800</lastBuildDate><atom:link href="http://peapio.github.io/tags/%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+    <title>连续序列的最大子列和</title>
+    <link>http://peapio.github.io/%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%AD%90%E5%88%97%E5%92%8C/</link>
+    <pubDate>Tue, 19 Apr 2022 13:20:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://peapio.github.io/%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%AD%90%E5%88%97%E5%92%8C/</guid>
+    <description><![CDATA[连续序列的最大子列和 给定N个整数的序列${A_1,A_2,\cdots,A_N}$ 求函数$f(i,j)=max{0,\sum_{k=i}^n]]></description>
+</item><item>
+    <title>常用代码2</title>
+    <link>http://peapio.github.io/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%812/</link>
+    <pubDate>Tue, 19 Apr 2022 13:17:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://peapio.github.io/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%812/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/acwing.png" referrerpolicy="no-referrer">
+            </div>算法基础课相关代码模板 不得不说AcWing真的很良心！2021年春天我补寒假每日一题的一个月真的很充实，也学到了很多东西，但是由于考研就停止]]></description>
+</item><item>
+    <title>常用代码</title>
+    <link>http://peapio.github.io/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link>
+    <pubDate>Tue, 19 Apr 2022 13:15:33 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://peapio.github.io/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid>
+    <description><![CDATA[c++常用函数 b进制转换 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 char get(int x)//将x转换为字符形式 { if (x &lt;= 9) return x + &#39;0&#39;; return x - 10 + &#39;A&#39;; } string base(int n, int b)//将n]]></description>
+</item><item>
+    <title>刷题技巧</title>
+    <link>http://peapio.github.io/%E5%88%B7%E9%A2%98%E6%8A%80%E5%B7%A7/</link>
+    <pubDate>Tue, 19 Apr 2022 13:12:31 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://peapio.github.io/%E5%88%B7%E9%A2%98%E6%8A%80%E5%B7%A7/</guid>
+    <description><![CDATA[刷题技巧 记录c++刷题过程中的技巧 vector ​ vector&lt;类型&gt;标识符(最大容量，初始所有值) 1 2 3 vector&lt;vector&lt;int&gt; &gt; cnt(m, vector&lt;int&gt;(5)); stoi(字符串(str)]]></description>
+</item></channel>
+</rss>

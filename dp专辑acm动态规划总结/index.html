@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>【DP专辑】ACM动态规划总结 - Fin`s Blog</title><meta name="Description" content="这是我的博客"><meta property="og:title" content="【DP专辑】ACM动态规划总结" />
+<meta property="og:description" content="【DP专辑】ACM动态规划总结 闫式DP分析法 置顶 Accagain 2014-05-15 13:43:46 19565 收藏 99 分类专栏： 动态规划 版权 转载请注明出处，谢谢。 http://blog.csdn.net/cc_again?viewmode=list &mdash;&mdash;&mdash;- Accagain 2014年5月15日 动态规划" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" /><meta property="og:image" content="http://peapio.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-19T12:40:44+08:00" />
+<meta property="article:modified_time" content="2022-04-19T12:40:44+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://peapio.github.io/logo.png"/>
+
+<meta name="twitter:title" content="【DP专辑】ACM动态规划总结"/>
+<meta name="twitter:description" content="【DP专辑】ACM动态规划总结 闫式DP分析法 置顶 Accagain 2014-05-15 13:43:46 19565 收藏 99 分类专栏： 动态规划 版权 转载请注明出处，谢谢。 http://blog.csdn.net/cc_again?viewmode=list &mdash;&mdash;&mdash;- Accagain 2014年5月15日 动态规划"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" /><link rel="prev" href="http://peapio.github.io/c-_stl%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" /><link rel="next" href="http://peapio.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "【DP专辑】ACM动态规划总结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/peapio.github.io\/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93\/"
+        },"genre": "posts","keywords": "动态规划","wordcount":  3682 ,
+        "url": "http:\/\/peapio.github.io\/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93\/","datePublished": "2022-04-19T12:40:44+08:00","dateModified": "2022-04-19T12:40:44+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Ytq"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Fin`s Blog">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Fin`s Blog">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">【DP专辑】ACM动态规划总结</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Ytq</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AE%97%E6%B3%95/"><i class="far fa-folder fa-fw"></i>算法</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-19">2022-04-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3682 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#闫式dp分析法">闫式DP分析法</a></li>
+    <li><a href="#一简单基础dp">一、简单基础dp</a>
+      <ul>
+        <li><a href="#1递推">1、递推：</a></li>
+        <li><a href="#2背包">2、背包</a></li>
+        <li><a href="#3lis">3、LIS</a></li>
+      </ul>
+    </li>
+    <li><a href="#二区间dp">二、区间dp</a></li>
+    <li><a href="#三树形dp">三、树形dp</a></li>
+    <li><a href="#四数位dp">四、数位dp</a></li>
+    <li><a href="#五概率期望-dp">五、概率(期望) dp</a></li>
+    <li><a href="#六状态压缩dp">六、状态压缩dp</a></li>
+    <li><a href="#七数据结构优化的dp">七、数据结构优化的dp</a>
+      <ul>
+        <li><a href="#1二进制优化">1、二进制优化</a></li>
+        <li><a href="#2单调队列优化">2、单调队列优化</a></li>
+        <li><a href="#3斜率优化">3、斜率优化</a></li>
+        <li><a href="#4四边形不等式优化">4、四边形不等式优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="dp专辑acm动态规划总结">【DP专辑】ACM动态规划总结</h1>
+<h2 id="闫式dp分析法">闫式DP分析法</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/dp.png"
+        data-srcset="/images/dp.png, /images/dp.png 1.5x, /images/dp.png 2x"
+        data-sizes="auto"
+        alt="/images/dp.png"
+        title="dp" /></p>
+<blockquote>
+<p>置顶 Accagain 2014-05-15 13:43:46  19565  收藏 99
+分类专栏： 动态规划
+版权
+转载请注明出处，谢谢。   <a href="http://blog.csdn.net/cc_again?viewmode=list" target="_blank" rel="noopener noreffer">http://blog.csdn.net/cc_again?viewmode=list</a>          &mdash;&mdash;&mdash;-  Accagain  2014年5月15日</p>
+</blockquote>
+<p><strong>动态规划一直是ACM竞赛中的重点，同时又是难点，因为该算法时间效率高，代码量少，多元性强，主要考察思维能力、建模抽象能力、灵活度。</strong></p>
+<p>本人动态规划博客地址：http://blog.csdn.net/cc_again/article/category/1261899</p>
+<hr>
+<p>==动态规划==（英语：Dynamic programming，DP）是一种在数学、计算机科学和经济学中使用的，通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法。 动态规划常常适用于有重叠子问题和最优子结构性质的问题，动态规划方法所耗时间往往远少于朴素解法。</p>
+<p>动态规划背后的基本思想非常简单。大致上，若要解一个给定问题，我们需要解其不同部分（即子问题），再合并子问题的解以得出原问题的解。 通常许多子问题非常相似，为此动态规划法试图仅仅解决每个子问题一次，从而减少计算量： 一旦某个给定子问题的解已经算出，则将其记忆化存储，以便下次需要同一个子问题解之时直接查表。 这种做法在重复子问题的数目关于输入的规模呈指数增长时特别有用。</p>
+<p>**动态规划问题满足三大重要性质 **</p>
+<p>==最优子结构性质==：如果问题的最优解所包含的子问题的解也是最优的，我们就称该问题具有最优子结构性质（即满足最优化原理）。最优子结构性质为动态规划算法解决问题提供了重要线索。</p>
+<p>==子问题重叠性质==：子问题重叠性质是指在用递归算法自顶向下对问题进行求解时，每次产生的子问题并不总是新问题，有些子问题会被重复计算多次。动态规划算法正是利用了这种子问题的重叠性质，对每一个子问题只计算一次，然后将其计算结果保存在一个表格中，当再次需要计算已经计算过的子问题时，只是在表格中简单地查看一下结果，从而获得较高的效率。</p>
+<p>==无后效性==：将各阶段按照一定的次序排列好之后，对于某个给定的阶段状态，它以前各阶段的状态无法直接影响它未来的决策，而只能通过当前的这个状态。换句话说，每个状态都是过去历史的一个完整总结。这就是无后向性，又称为无后效性。</p>
+<hr>
+<p>动态规划分类有很多划分方法，网上有很多是按照状态来分，分为一维、二维、区间、树形等等。我觉得还是按功能即解决的问题的类型以及难易程度来分比较好，下面按照我自己的理解和归纳，把动态规划的分类如下：</p>
+<h2 id="一简单基础dp">一、简单基础dp</h2>
+<p>这类dp主要是一些状态比较容易表示，转移方程比较好想，问题比较基本常见的。主要包括递推、背包、LIS（最长递增序列），LCS（最长公共子序列），下面针对这几种类型，推荐一下比较好的学习资料和题目。</p>
+<h3 id="1递推">1、递推：</h3>
+<p>递推一般形式比较单一，从前往后，分类枚举就行。</p>
+<p>简单:</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2084" target="_blank" rel="noopener noreffer">hdu 2084 数塔</a> 简单从上往下递推</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2018" target="_blank" rel="noopener noreffer">hdu 2018 母牛的故事</a> 简单递推计数</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2044" target="_blank" rel="noopener noreffer">hdu 2044 一只小蜜蜂&hellip;</a> 简单递推计数（Fibonacci）</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2041" target="_blank" rel="noopener noreffer">hdu 2041 超级楼梯</a> Fibonacci</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2050" target="_blank" rel="noopener noreffer">hdu 2050 折线分割平面</a> 找递推公式</p>
+<p>推荐：</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/25691925" target="_blank" rel="noopener noreffer">CF 429B B.Working out</a> 四个角递推</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/24841249" target="_blank" rel="noopener noreffer">zoj 3747 Attack on Titans</a> 带限制条件的计数递推dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/24844911" target="_blank" rel="noopener noreffer">uva 10328 Coin Toss</a> 同上题</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11856847" target="_blank" rel="noopener noreffer">hdu 4747 Mex </a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9918313" target="_blank" rel="noopener noreffer">hdu 4489 The King&rsquo;s Ups and Downs</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10858813" target="_blank" rel="noopener noreffer">hdu 4054 Number String</a></p>
+<h3 id="2背包">2、背包</h3>
+<p>经典的背包九讲：http://love-oriented.com/pack/</p>
+<p>推荐博客：http://blog.csdn.net/woshi250hua/article/details/7636866</p>
+<p>主要有==0-1背包==、==完全背包==、==分组背包==、==多重背包==。</p>
+<p>简单：</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2955" target="_blank" rel="noopener noreffer">hdu 2955 Robberies</a> 01背包</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1864" target="_blank" rel="noopener noreffer">hdu 1864 最大报销额</a> 01背包</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2602" target="_blank" rel="noopener noreffer">hdu 2602 Bone Collector</a> 01背包</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2844" target="_blank" rel="noopener noreffer">hdu 2844 Coins</a> 多重背包</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2159" target="_blank" rel="noopener noreffer">hdu 2159 FATE</a> 完全背包</p>
+<p>推荐：</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/22728273" target="_blank" rel="noopener noreffer">woj 1537 A Stone-I</a> 转化成背包</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/22728273" target="_blank" rel="noopener noreffer">woj 1538 B Stone-II</a> 转化成背包</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12200343" target="_blank" rel="noopener noreffer">poj 1170 Shopping Offers</a> 状压+背包</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/25984915" target="_blank" rel="noopener noreffer">zoj 3769 Diablo III</a> 带限制条件的背包</p>
+<p><a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3638" target="_blank" rel="noopener noreffer">zoj 3638 Fruit Ninja </a>背包的转化成组合数学</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11518329" target="_blank" rel="noopener noreffer">hdu 3092 Least common multiple</a> 转化成完全背包问题</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/25426159" target="_blank" rel="noopener noreffer">poj 1015 Jury Compromise</a> 扩大区间+输出路径</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10162471" target="_blank" rel="noopener noreffer">poj 1112 Team Them UP</a> 图论+背包</p>
+<h3 id="3lis">3、LIS</h3>
+<p>最长递增子序列，朴素的是o(n^2)算法，二分下可以写成o(nlgn)：维护一个当前最优的递增序列——找到恰好大于它更新</p>
+<p>简单：</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1003" target="_blank" rel="noopener noreffer">hdu 1003 Max Sum</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1087" target="_blank" rel="noopener noreffer">hdu 1087 Super Jumping!</a></p>
+<p>推荐：</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/18372521" target="_blank" rel="noopener noreffer">uva 10635 Prince and Princess</a> LCS转化成LIS</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11821361" target="_blank" rel="noopener noreffer">hdu 4352 XHXJ&rsquo;s LIS</a>　数位dp+LIS思想</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12113809" target="_blank" rel="noopener noreffer">srm div2 1000 </a> 状态压缩+LIS</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12208725" target="_blank" rel="noopener noreffer">poj 1239 Increasing Sequence</a> 两次dp</p>
+<p>4、LCS</p>
+<p>最长公共子序列，通常o(n^2)的算法</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1503" target="_blank" rel="noopener noreffer">hdu 1503 Advanced Fruits</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1159" target="_blank" rel="noopener noreffer">hdu 1159 Common Subsequence</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8554454" target="_blank" rel="noopener noreffer">uva 111 History Grading</a> 要先排个序</p>
+<p><a href="http://poj.org/problem?id=1080" target="_blank" rel="noopener noreffer">poj 1080 Human Gene Functions</a></p>
+<h2 id="二区间dp">二、区间dp</h2>
+<p>推荐博客：http://blog.csdn.net/woshi250hua/article/details/7969225</p>
+<p>区间dp,一般是枚举区间，把区间分成左右两部分，然后求出左右区间再合并。</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10169643" target="_blank" rel="noopener noreffer">poj 1141 Brackets Sequence</a> 括号匹配并输出方案</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11852367" target="_blank" rel="noopener noreffer">hdu 4745 Two Rabbits</a> 转化成求回文串</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10977751" target="_blank" rel="noopener noreffer">zoj 3541 The Last Puzzle </a> 贪心+区间dp</p>
+<p><a href="http://poj.org/problem?id=2955" target="_blank" rel="noopener noreffer">poj 2955 Brackets</a></p>
+<p><a href="http://blog.csdn.net/woshi250hua/article/details/7973824" target="_blank" rel="noopener noreffer">hdu 4283 You Are the One</a> 常见写法</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2476" target="_blank" rel="noopener noreffer">hdu 2476 String Printer</a></p>
+<p><a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3537" target="_blank" rel="noopener noreffer">zoj 3537 Cake</a></p>
+<p><a href="http://codeforces.com/problemset/problem/149/D" target="_blank" rel="noopener noreffer">CF 149D Coloring Brackets</a></p>
+<p><a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3469" target="_blank" rel="noopener noreffer">zoj 3469 Food Delivery</a></p>
+<h2 id="三树形dp">三、树形dp</h2>
+<p>比较好的博客：http://blog.csdn.net/woshi250hua/article/details/7644959</p>
+<p>一篇论文：http://doc.baidu.com/view/f3b19d0b79563c1ec5da710e.html</p>
+<p>树形dp是建立在树这种数据结构上的dp,一般状态比较好想，通过dfs维护从根到叶子或从叶子到根的状态转移。</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12011757" target="_blank" rel="noopener noreffer">hdu 4123 Bob&rsquo;s Race</a> 二分+树形dp+单调队列</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8911480" target="_blank" rel="noopener noreffer">hdu 4514</a> 求树的直径</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/13004997" target="_blank" rel="noopener noreffer">poj 1655 Balancing Act</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11407157" target="_blank" rel="noopener noreffer">hdu 4714 Tree2Cycle</a> 思维</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10312393" target="_blank" rel="noopener noreffer">hdu 4616 Game</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12060191" target="_blank" rel="noopener noreffer">hdu 4126 Genghis Kehan the Conqueror</a> MST+树形dp 比较经典</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12092021" target="_blank" rel="noopener noreffer">hdu 4756 Install Air Conditioning</a> MST+树形dp 同上</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12346065" target="_blank" rel="noopener noreffer">hdu 3660 Alice and Bob&rsquo;s Trip</a> 有点像对抗搜索</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10226673" target="_blank" rel="noopener noreffer">CF 337D Book of Evil </a> 树直径的思想 思维</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2196" target="_blank" rel="noopener noreffer">hdu 2196 Computer</a> 搜两遍</p>
+<h2 id="四数位dp">四、数位dp</h2>
+<p>推荐一篇论文：http://wenku.baidu.com/view/d2414ffe04a1b0717fd5dda8.html</p>
+<p>数位dp,主要用来解决统计满足某类特殊关系或有某些特点的区间内的数的个数，它是按位来进行计数统计的，可以保存子状态，速度较快。数位dp做多了后，套路基本上都差不多，关键把要保存的状态给抽象出来，保存下来。</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2089" target="_blank" rel="noopener noreffer">hdu 2089 不要62</a> 简单数位dp</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3709" target="_blank" rel="noopener noreffer">hdu 3709 Balanced Number</a> 比较简单</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/25053071" target="_blank" rel="noopener noreffer">CF 401D Roman and Numbers</a> 状压+数位dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8872355" target="_blank" rel="noopener noreffer">hdu 4398 X mod f(x)</a> 把模数加进状态里面</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11747555" target="_blank" rel="noopener noreffer">hdu 4734 F(x) </a> 简单数位dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12257445" target="_blank" rel="noopener noreffer">hdu 3693 Math teacher&rsquo;s homework</a> 思维变换的数位dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11821361" target="_blank" rel="noopener noreffer">hdu 4352 XHXJ&rsquo;s LIS</a>　数位dp+LIS思想</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8815450" target="_blank" rel="noopener noreffer">CF 55D Beautiful Numbers</a> 比较巧妙的数位dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8872073" target="_blank" rel="noopener noreffer">hdu 3565 Bi-peak Numbers</a> 比较难想</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8877603" target="_blank" rel="noopener noreffer">CF 258B Little Elephant and Elections</a> 数位dp+组合数学+逆元</p>
+<h2 id="五概率期望-dp">五、概率(期望) dp</h2>
+<p>推荐博客：http://www.cnblogs.com/kuangbin/archive/2012/10/02/2710606.html</p>
+<p>推荐博客：http://blog.csdn.net/woshi250hua/article/details/7912049</p>
+<p>推荐论文：</p>
+<p><a href="http://wenku.baidu.com/view/1c41152de2bd960590c677a8.html" target="_blank" rel="noopener noreffer">《走进概率的世界》</a></p>
+<p><a href="http://wenku.baidu.com/view/90adb02acfc789eb172dc8a8.html" target="_blank" rel="noopener noreffer">《浅析竞赛中一类数学期望问题的解决方法》</a></p>
+<p><a href="http://wenku.baidu.com/view/56147518a8114431b90dd81e.html" target="_blank" rel="noopener noreffer">《有关概率和期望问题的研究》</a></p>
+<p>一般来说概率正着推，期望逆着推。有环的一般要用到高斯消元解方程。**期望可以分解成多个子期望的加权和，权为子期望发生的概率，即 $ E(aA+bB+&hellip;) = aE(A) + bE(B) +&hellip; $  **</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/8974277" target="_blank" rel="noopener noreffer">ural 1776 Anniversiry Firework</a> 比较基础</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10493543" target="_blank" rel="noopener noreffer">hdu 4418 Time travel </a> 比较经典BFS+概率dp+高斯消元</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10456837" target="_blank" rel="noopener noreffer">hdu 4586 Play the Dice</a> 推公式比较水</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9926597" target="_blank" rel="noopener noreffer">hdu 4487 Maximum Random Walk</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/12408505" target="_blank" rel="noopener noreffer">jobdu 1546 迷宫问题</a> 高斯消元+概率dp+BFS预处理</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11536347" target="_blank" rel="noopener noreffer">hdu 3853 LOOPS</a> 简单概率dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11554945" target="_blank" rel="noopener noreffer">hdu 4405 Aeroplane chess</a> 简单概率dp,比较直接</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10431451" target="_blank" rel="noopener noreffer">hdu 4089 Activation</a> 比较经典</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9936197" target="_blank" rel="noopener noreffer">poj 2096 Collecting Bugs</a> 题目比较难读懂</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11532517" target="_blank" rel="noopener noreffer">zoj 3640 Help me Escape</a> 从后往前，比较简单</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11544753" target="_blank" rel="noopener noreffer">hdu 4034 Maze</a> 经典好题，借助树的概率dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/11099749" target="_blank" rel="noopener noreffer">hdu 4336 Card Collector</a> 状态压缩+概率dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/10442931" target="_blank" rel="noopener noreffer">hdu 4326 Game </a> 这个题状态有点难抽象</p>
+<h2 id="六状态压缩dp">六、状态压缩dp</h2>
+<p>这类问题有TSP、插头dp等。</p>
+<p>推荐论文：http://wenku.baidu.com/view/ce445e4f767f5acfa1c7cd51.html</p>
+<p>推荐博客：http://blog.csdn.net/sf____/article/details/15026397</p>
+<p>推荐博客：http://www.notonlysuccess.com/index.php/plug_dp/</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9393357" target="_blank" rel="noopener noreffer">hdu 1693 Eat the Trees  插头dp</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9984961" target="_blank" rel="noopener noreffer">hdu 4568 Hunter</a> 最短路+TSP</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9954921" target="_blank" rel="noopener noreffer">hdu 4539 </a> 插头dp</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9060019" target="_blank" rel="noopener noreffer">hdu 4529 状压dp</a></p>
+<p><a href="http://poj.org/problem?id=1185" target="_blank" rel="noopener noreffer">poj 1185 炮兵阵地</a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9390475" target="_blank" rel="noopener noreffer">poj 2411 Mandriann&rsquo;s Dream</a> 轮廓线dp</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3811" target="_blank" rel="noopener noreffer">hdu 3811 Permutation</a></p>
+<p><a href="http://poj.org/problem?id=1038" target="_blank" rel="noopener noreffer">poj 1038</a></p>
+<p><a href="http://poj.org/problem?id=2441" target="_blank" rel="noopener noreffer">poj 2441</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2167" target="_blank" rel="noopener noreffer">hdu 2167</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4026" target="_blank" rel="noopener noreffer">hdu 4026</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4281" target="_blank" rel="noopener noreffer">hdu 4281</a></p>
+<h2 id="七数据结构优化的dp">七、数据结构优化的dp</h2>
+<p>有时尽管状态找好了，转移方程的想好了，但时间复杂度比较大，需要用数据结构进行优化。常见的优化有二进制优化、单调队列优化、斜率优化、四边形不等式优化等。</p>
+<h3 id="1二进制优化">1、二进制优化</h3>
+<p>主要是优化背包问题，背包九讲里面有介绍，比较简单，这里只附上几道题目。</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1059" target="_blank" rel="noopener noreffer">hdu 1059 Diving</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1059" target="_blank" rel="noopener noreffer">hdu 1171 Big Event in Hdu</a></p>
+<p><a href="http://poj.org/problem?id=1048" target="_blank" rel="noopener noreffer">poj 1048 Follow My Magic</a></p>
+<h3 id="2单调队列优化">2、单调队列优化</h3>
+<p>推荐论文：http://wenku.baidu.com/view/4d23b4d128ea81c758f578ae.html</p>
+<p>推荐博客：http://www.cnblogs.com/neverforget/archive/2011/10/13/ll.html</p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9328243" target="_blank" rel="noopener noreffer">hdu 3401 Trade </a></p>
+<p><a href="http://blog.csdn.net/cc_again/article/details/9335795" target="_blank" rel="noopener noreffer">poj 3245 Sequece Partitioning</a> 二分+单调队列优化</p>
+<h3 id="3斜率优化">3、斜率优化</h3>
+<p>推荐论文：<a href="http://wenku.baidu.com/view/ef259400bed5b9f3f90f1c3a.html" target="_blank" rel="noopener noreffer">用单调性优化动态规划</a></p>
+<p>推荐博客：http://www.cnblogs.com/ronaflx/archive/2011/02/05/1949278.html</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3507" target="_blank" rel="noopener noreffer">hdu 3507 Print Article</a></p>
+<p><a href="http://poj.org/problem?id=1260" target="_blank" rel="noopener noreffer">poj 1260 Pearls</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2829" target="_blank" rel="noopener noreffer">hdu 2829 Lawrence</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2993" target="_blank" rel="noopener noreffer">hdu 2993 Max Average Problem</a></p>
+<h3 id="4四边形不等式优化">4、四边形不等式优化</h3>
+<p>推荐博客：http://www.cnblogs.com/ronaflx/archive/2011/03/30/1999764.html</p>
+<p>推荐博客：http://www.cnblogs.com/zxndgv/archive/2011/08/02/2125242.html</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2952" target="_blank" rel="noopener noreffer">hdu 2952 Counting Sheep</a></p>
+<p><a href="http://poj.org/problem?id=1160" target="_blank" rel="noopener noreffer">poj 1160 Post Office</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3480" target="_blank" rel="noopener noreffer">hdu 3480 Division</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3516" target="_blank" rel="noopener noreffer">hdu 3516 Tree Construction</a></p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2829" target="_blank" rel="noopener noreffer">hdu 2829 Lawrence</a></p>
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结" data-hashtags="动态规划"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-hashtag="动态规划"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://peapio.github.io/dp%E4%B8%93%E8%BE%91acm%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" data-title="【DP专辑】ACM动态规划总结"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/c-_stl%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="prev" rel="prev" title="C&#43;&#43;_STL常用函数"><i class="fas fa-angle-left fa-fw"></i>C&#43;&#43;_STL常用函数</a>
+            <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87/" class="next" rel="next" title="计算机刷题常用英语词汇">计算机刷题常用英语词汇<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.97.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ytq</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"peapio/peapio.github.io"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
